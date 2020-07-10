@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "794812716526",
+    "firebase_url": "https://freemind-meditations.firebaseio.com",
+    "project_id": "freemind-meditations",
+    "storage_bucket": "freemind-meditations.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:794812716526:android:78c128d9d227c06dc66aff",
+        "android_client_info": {
+          "package_name": "com.freemind.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "794812716526-bh8tnc54gpqds2qpuce166uaqfc4obgg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_kxHQpxu32h_Blu8Xaob53bSuaYdM7K4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "794812716526-bh8tnc54gpqds2qpuce166uaqfc4obgg.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "794812716526-868shrart360euaqaipv22gagipidkp5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.freemind.app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>794812716526-868shrart360euaqaipv22gagipidkp5.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.794812716526-868shrart360euaqaipv22gagipidkp5</string>
+	<key>API_KEY</key>
+	<string>AIzaSyC7q-vaR_hHk7EqvNeK_m4OTy2bR6eemm4</string>
+	<key>GCM_SENDER_ID</key>
+	<string>794812716526</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.freemind.app</string>
+	<key>PROJECT_ID</key>
+	<string>freemind-meditations</string>
+	<key>STORAGE_BUCKET</key>
+	<string>freemind-meditations.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:794812716526:ios:cad3a676f1739dfcc66aff</string>
+	<key>DATABASE_URL</key>
+	<string>https://freemind-meditations.firebaseio.com</string>
+</dict>
+</plist>

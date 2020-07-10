@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="format-detection" content="telephone=no">
+  <meta name="viewport" content="width=device-width" />
+  <!--<meta name="viewport" content="initial-scale=1, width=device-width, height=device-height, viewport-fit=cover">-->
+    <meta name="viewport" content="initial-scale=1, width=device-width, height=device-height, viewport-fit=cover, user-scalable=0">
+  <!--<meta name="viewport" content="user-scalable=no, initial-scale=1, minimum-scale=1, width=device-width" />-->
+   <!--<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />-->
+  <title>Onsen UI</title>
+  
+  <!-- CSS dependencies -->
+  <link rel="stylesheet" href="css/onsenui.css">
+  <link rel="stylesheet" href="css/onsen-css-components.css">
+  <script src="js/onsenui.js"></script>
+  <link rel="stylesheet" href="css/animate.css">
+  <script src="js/jquery.min.js"></script>
+  <!-- Cordova reference -->
+  <script src="cordova.js"></script>
+<link rel="stylesheet" href="css/rangeslider.min.css">
+  <script src="js/range-slider.js"></script>
+  <script src="js/hammer.js"></script>
+  <script src="toast/toast.js"></script>
+  <link rel="stylesheet" href="css/custom-new.css">
+  <script src="js/parallax.min.js"></script>
+ 
+<script>
+//localStorage.clear();
+ons.platform.select('ios');
+setTimeout(function() {
+    navigator.splashscreen.hide();
+	
+	
+}, 4000);
+
+// alert dialog dismissed
+function alertDismissed() {
+
+}
+function alertDismissed_2() {
+if(localStorage.getItem('noShow') == null){	
+	
+setTimeout(function(){ showDialog('first-three-dialog');}, 3000);
+
+}
+
+showAttention();
+
+
+}
+</script>
+</head>
+<body>
+
+
+<ons-dialog id="my-dialog">
+    <div style="text-align: center; padding: 10px;">
+      <p>
+       <textarea class="noteTxt"></textarea>
+      </p>
+
+      <p>
+        <ons-button onclick="hideDialog('my-dialog')" class="dialoagCloser">Close</ons-button> <ons-button class="submitNoteBtn" data-id="">Add Note</ons-button>
+      </p>
+    </div>
+</ons-dialog>
+  
+<ons-dialog id="pich-zoom-explainer">
+    <div style="text-align: center; padding: 10px;">
+    <p>
+    <img src="images/pinch-zoom.png" width="100%" >
+    </p>
+
+      <p>
+        <ons-button class="hidePinchZoomDialog">Close</ons-button>
+      </p>
+    </div>
+</ons-dialog>
+  
+ 
+
+<ons-alert-dialog id="dialog-2" modifier="rowfooter">
+    <div class="alert-dialog-title"></div>
+    <div class="alert-dialog-content">
+      Subscribe to access the full library of meditations.
+    </div>
+    <div class="alert-dialog-footer">
+      <ons-alert-dialog-button class="playTodays">CONTINUE</ons-alert-dialog-button>
+      <ons-alert-dialog-button class="subBtn">SUBSCRIBE</ons-alert-dialog-button>
+    </div>
+</ons-alert-dialog>
+
+<ons-toast id="myToast" animation="ascend">
+  Use the FreeMind Map to help find your way around.
+</ons-toast>
+
+<ons-alert-dialog id="pass-reminder-dialog" modifier="rowfooter">
+    <div class="alert-dialog-title">Password Reminder</div>
+    <div class="alert-dialog-content">
+	
+	<p>Enter your email below and we will email your password.</p>
+      <ons-input id="emailR" class="emailR" modifier="underbar" type="email" placeholder="Email" float></ons-input>
+    </div>
+    <div class="alert-dialog-footer">
+      <ons-alert-dialog-button style="color:red;" onclick="hideDialog('pass-reminder-dialog');">CANCEL</ons-alert-dialog-button>
+      <ons-alert-dialog-button class="sendPassBtn_2">OK</ons-alert-dialog-button>
+    </div>
+</ons-alert-dialog>
+
+
+
+<ons-popover direction="up" id="popover">
+  <div style="padding: 10px; text-align: center;">
+    <p>
+    <img src="images/info.png" width="100%" ><br>
+    </p>
+    <p>
+      <ons-button onclick="hidePopover()">Close</ons-button>
+    </p>
+  </div>
+</ons-popover>
+
+
+<ons-modal id="achievementModal">
+
+<ons-icon icon="md-close" style="position:absolute; top:40px;left:15px;font-size:28px;" onclick='achievementModal.hide({animation: "fade"});'></ons-icon> 
+
+	<div class="signup-holderg">
+	
+
+	<img src="" class="badge">
+	
+	<div class="ach_p"></div>
+	
+	<div style="width:100%;height:auto;display:inline-block;margin-top:10px;">
+	<div class="shareBtn" data-message="" data-image=""><i class="fa fa-share-alt" aria-hidden="true"></i> Be social</div>
+	<div class="referBtn invBtn" data-message="" data-image=""><i class="fa fa-users" aria-hidden="true"></i> Invite a friend</div>
+	
+	</div>
+
+	</div>
+</ons-modal>
+
+
+
+
+<ons-modal id="searchModal">
+
+	
+<ons-icon icon="ion-ios-close" class="searchModalCloser" onclick='searchModal.hide({animation: "fade"});'></ons-icon>
+	
+	
+<div class="center myCenter">
+<input type="search" placeholder="Enter Keyword" class="searchInp">
+</div>
+
+
+<div class="right settingsRight">
+
+
+<i class="micIcon fa fa-microphone" aria-hidden="true"></i>
+<i class="earIcon fa fa-assistive-listening-systems" aria-hidden="true"></i>
+</div>
+
+
+	
+
+
+<div class="main mapMain" style="position:absolute;width:100%;height:80%;top:10%;left:0;background:none;z-index:999;overflow:hidden;">
+
+<div class="itemsHold" style="-webkit-overflow-scrolling: touch;">
+
+
+
+<img id="loading" class="loading" src='images/loader.png' border='0'/>
+	
+<div class="endDivSearch"></div>	
+</div>
+
+</div>
+</ons-modal>
+
+
+
+
+<div class="attentiontModalBg"></div>
+
+<ons-modal id="attentiontModal">
+
+<div class="attentionInner animated zoomIn">
+<div class="closer">
+<ons-icon icon="md-close" style="font-size:28px; width:50px;"></ons-icon> 
+</div>
+<p>Don't forget that you can tap the search icon to search for something specific.</p>
+</div>
+</ons-modal>
+
+
+<ons-modal id="largeDetailsModal">
+
+<div class="largeDeInner animated flipInX">
+
+<img src="images/freemind.png" style="width:55px;" >
+
+<div class="LareDetailscloser">
+<ons-icon icon="md-close" style="font-size:28px; width:50px;"></ons-icon> 
+</div>
+<div class="LoargeDetailsCont" style="-webkit-overflow-scrolling: touch;">
+</div>
+
+</div>
+</ons-modal>
+
+
+<ons-modal id="subModal">
+<ons-icon icon="md-close" style="position:absolute; top:40px;left:15px;font-size:28px; width:50px;" onclick='subModal.hide({animation: "lift"});'></ons-icon> 
+
+	<div class="signup-holder_3">
+	
+	<div class="custom-header2">Subscribe to FreeMind to get access to the full library of meditations.</div>
+
+    
+	<div class="subItem monthly" data-time="monthly" data-price="9.99">
+	<ons-icon icon="md-check"></ons-icon>
+	<p>MONTHLY</p>
+	<span class="price">£9.99</span>
+	<span>Per month</span>
+	</div><div class="subItem annual subActive" data-time="annual" data-price="74.99">
+	<ons-icon icon="md-check"></ons-icon>
+	<p>ANNUAL</p>
+	<span class="price">£74.99</span>
+	<span>Per Year</span>
+	</div><div class="subItem lifetime" data-time="lifetime" data-price="399.99">
+	<ons-icon icon="md-check"></ons-icon>
+	<p>LIFETIME</p>
+	<span class="price">£399.99</span>
+	<span>One Payment</span>
+	</div>
+	
+	
+<div class="custom-header2 subTxt" style="padding:10px;overflow-y:scroll; ">
+The subscription will automatically renew unless auto-renew is turned off at least 24 hours before the end of the current period. You can go to your iTunes account settings to manage your subscription and turn off auto-renew. your iTunes account will be charged when the purchase is confirmed.
+</div>
+	
+	</div>
+	
+	
+	<div class="termsInfo tcBtn">Please read our <span>Terms & Conditions</span></div>
+	
+	
+	<div class="subscribe_btn" data-time="annual" data-price="74.99">CONTINUE</div>
+
+</ons-modal>
+
+
+<ons-modal id="modalIntrol">
+
+<div class="page__content">
+
+  <img src="images/Xicon.png" class="closeIntro" style="z-index:10000;position:absolute; top:40px;left:15px;font-size:28px; width:20px;color:#fff">
+
+  <ons-carousel fullscreen swipeable auto-scroll overscrollable id="carousel">
+  
+  
+  
+  <ons-carousel-item class="pe">
+        <div class="item-label">
+		<p class="introP">
+		<span>Welcome</span><br><br>
+		We’re here<br>
+        to help you have<br> an <span>amazing</span> day<br>
+		</p>
+		</div>
+      </ons-carousel-item>
+	  
+	    <ons-carousel-item class="po">
+        <div class="item-label">
+		<p class="introP">
+        We work with<br>
+<span>film composers</span> and<br>
+professional<br> 
+musicians<br>
+<span>to make</span><br>
+meditation<br>
+<span>more powerful</span><br>
+and enjoyable
+		</p>
+		</div>
+      </ons-carousel-item>
+
+	    <!--<ons-carousel-item class="pu">
+        <div class="item-label">
+		<p class="introP">
+		Discover over<br>
+		<span>250 meditations</span> designed for every<br>
+        area of <span>modern life</span>
+		</p>
+		</div>
+      </ons-carousel-item>
+	    <ons-carousel-item >
+        <div class="item-label">
+		<p class="introP">
+		Start with the<br>
+        <span>Daily Meditations</span> <br>
+		of Peace
+		</p>
+		</div>
+      </ons-carousel-item>-->
+      
+    </ons-carousel>
+	
+     <div class="car-cover">
+	  
+	  
+	     <span class="carprev prevCar"><i class="fa fa-chevron-left" aria-hidden="true"></i></span>
+		 
+		 <span class="introIndicator">1/2</span>
+					 
+  
+  <span class="carnext nextCar"><i class="fa fa-chevron-right" aria-hidden="true"></i></span>
+
+      </div>
+		
+    </div>
+</ons-modal>
+
+
+
+
+<ons-modal id="techno">
+
+	<div class="signup-holder">
+
+	<p>
+      <ons-input id="fullname" class="signupInps fullname" modifier="underbar" placeholder="Full Name" float></ons-input>
+    </p>
+	
+	<p>
+      <ons-input id="email" class="signupInps email" modifier="underbar" type="email" placeholder="Email" float></ons-input>
+    </p>
+	
+	
+    <p>
+      <ons-input id="password" class="signupInps password" modifier="underbar" type="password" placeholder="Password" float></ons-input>
+    </p>
+
+	<div class="signupBtn">Sign-up</div>
+	<div class="signupCancelBtn" onclick='$(".loginholder").fadeIn(); $(".signup-holder").hide();'>Login</div>
+	
+	<div class="termsInfo tcBtn">By Signing up to FreeMind APP you confirm that you have read and agreed to our <span>TOS</span> & <span>Privacy policy</span>.</div>
+	</div>
+	
+	
+	<div class="loginholder">
+	
+	<div class="loginholderInner">
+	<p>
+      <ons-input id="emailL" class="loginInps emailL appenderInp" modifier="underbar" type="email" placeholder="Email" float></ons-input>
+	  
+    </p>
+	
+    <p>
+      <ons-input id="passwordL" class="loginInps passwordL appenderInp" modifier="underbar" type="password" placeholder="Password" float></ons-input>
+    </p>
+	
+	
+	
+	<div class="Btns i5">
+	<div class="loginBtn blueBtn">Login</div>
+	</div>
+	
+	
+	<!--<div class="Btns i5">
+	<div class="fb_signin facebookBtn" onclick='loginWithFB()'>Sign in with Facebook</div>
+	</div>-->
+	
+	<div class="termsInfo" onclick='techno.hide({animation: "lift"}); showDialog("pass-reminder-dialog");' style="font-size:14px; margin-top:5px;">Forgot Password?</div>
+	</div>
+	</div>
+	
+
+</ons-modal>
+
+
+
+
+
+<ons-modal id="modalplayer">
+
+<ons-alert-dialog id="my-alert-dialog" modifier="rowfooter">
+    <div class="alert-dialog-title">Confirm</div>
+    <div class="alert-dialog-content">
+      Do you want to download this meditation on your device?<br>
+	  To ensure downloads work correctly please check you have sufficient storage space on your device.
+    </div>
+    <div class="alert-dialog-footer">
+      <ons-alert-dialog-button onclick="hideDialog('my-alert-dialog');">No</ons-alert-dialog-button>
+      <ons-alert-dialog-button class="downloadBtn2">Yes</ons-alert-dialog-button>
+    </div>
+</ons-alert-dialog>
+
+
+
+
+
+     <!-- The Close Button -->
+<div style="position:absolute;width:100%;height:100%;top:0;left:0;background:none;z-index:999;">	 
+
+<div class="noconnection">No Internet Connection Detected</div>
+
+
+<i style="position:absolute; top:40px;left:15px;font-size:28px; width:50px;" class="fa fa-angle-down closemodalPlayer" aria-hidden="true"></i> 
+   
+<i style="position:absolute; top:40px;right:15px;font-size:28px;" class="fa fa-cloud-download downloadBtn" aria-hidden="true"></i> 
+	 
+  
+<div class="content">
+
+
+
+<ons-progress-bar value="0"></ons-progress-bar>
+
+
+<div class="audioInfo">
+<div class="AudioTitle"></div>
+
+<img class="symbol" src="" width="120" style="display:none;" >
+<div style="width:100%;height:auto;display:inline-block;margin-bottom:15px;">
+<img id="loading4" src='images/loader.png' border='0'/>
+</div>
+
+<div class="AudioBy"></div>
+
+<img id="L4" class="audioLoader" src="images/bullet-svg-animated.gif" >
+
+
+<div class="addToFavAudioHolder">
+<img class="addToFav mainAddToFav" src="images/Heart.png" data-id="" >
+</div>
+
+</div>
+
+<div class="controlersHolder">
+
+
+<div class="controlers">
+<img class="loopBtn" src="images/loop.png" >
+</div>
+
+
+<div class="controlers">
+<img class="backwardBtn" src="images/rewind.png" >
+</div>
+
+<div class="roundHolder">
+<button class="pbutton" id="btn-play"></button>
+</div>
+
+<div class="controlers">
+<img class="forwardBtn" src="images/forward.png" >
+</div>
+
+
+<div class="controlers">
+<img class="fa-stop" src="images/stop.png" >
+</div>
+
+
+
+<div id="status"></div>
+
+</div>	
+
+
+
+<audio title="" id="audio" class="audioPlay" src="" preload="auto"></audio>
+
+
+</div>
+	
+<div class="audioPlayerFooter">	
+<div class="Audio_passedTime audioTimes">00:00</div>
+<div class="Audio_durationTime audioTimes">00:00</div>	
+	
+<input id="range-control" type="range" min="0" max="100" step="1" value="0">
+</div>
+	
+</div>
+
+</ons-modal> 
+
+
+  
+<ons-navigator id="myNavigator" page="home.html"></ons-navigator>
+
+<ons-bottom-toolbar class="bottom-bar-full" >
+<div class="bbuttons"><img width="60" data-page="static-subs-peace.html" data-active="images/peaceBtn-active.png" id="1" data-inactive="images/peaceBtn.png" src="images/peaceBtn.png" class="animated shake delay-2s peacerBtn mainBtns" ></div>
+<div class="bbuttons"><img width="60" data-page="static-subs-power.html" data-active="images/powerBtn-active.png" id="2" data-inactive="images/powerBtn.png" src="images/powerBtn.png" class="mainBtns" ></div>
+<div class="bbuttons"><img width="60" data-page="static-subs-purpose.html" data-active="images/purposeBtn-active.png" id="3" data-inactive="images/purposeBtn.png" src="images/purposeBtn.png" class="mainBtns" ></div>
+</ons-bottom-toolbar>
+
+
+<ons-bottom-toolbar class="bottom-bar-half">
+
+<div class="bbuttons halfBtns hfbtn1" data-page="static-subs-peace.html"><img width="60" src="images/peace-txt.png" id="slide-item-1" class="technoNav" data-page="static-subs-peace.html"></div>
+<div class="bbuttons halfBtns hfbtn2" data-page="static-subs-power.html"><img width="60" src="images/power-txt.png" id="slide-item-2" class="technoNav" data-page="static-subs-power.html"></div>
+<div class="bbuttons halfBtns hfbtn3" data-page="static-subs-purpose.html"><img width="60" src="images/purpose-txt.png" id="slide-item-3" class="technoNav" data-page="static-subs-purpose.html"></div> 
+ 
+<div class="slidemenu">
+ 
+  <!-- Bar of the bottom -->
+  <div class="slider">
+    <div class="bar"></div>
+  </div>
+  
+</div>	
+</ons-bottom-toolbar>
+
+
+
+
+  <ons-template id="home.html" >
+    <ons-page align="center" class="home" id="home.html" modifier="full_bg">
+
+	
+	
+	
+<ons-toolbar modifier="transparent">
+	
+	<div class="left cogHolder">
+	
+		<svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 512 512">
+	<path style="fill:#FFF;" d="M416.3 256c0-21 13.1-38.9 31.7-46.1-4.9-20.5-13-39.7-23.7-57.1-6.4 2.8-13.2 4.3-20.1 4.3-12.6 0-25.2-4.8-34.9-14.4-14.9-14.9-18.2-36.8-10.2-55-17.3-10.7-36.6-18.8-57-23.7C295 82.5 277 95.7 256 95.7S217 82.5 209.9 64c-20.5 4.9-39.7 13-57.1 23.7 8.1 18.1 4.7 40.1-10.2 55-9.6 9.6-22.3 14.4-34.9 14.4-6.9 0-13.7-1.4-20.1-4.3C77 170.3 68.9 189.5 64 210c18.5 7.1 31.7 25 31.7 46.1 0 21-13.1 38.9-31.6 46.1 4.9 20.5 13 39.7 23.7 57.1 6.4-2.8 13.2-4.2 20-4.2 12.6 0 25.2 4.8 34.9 14.4 14.8 14.8 18.2 36.8 10.2 54.9 17.4 10.7 36.7 18.8 57.1 23.7 7.1-18.5 25-31.6 46-31.6s38.9 13.1 46 31.6c20.5-4.9 39.7-13 57.1-23.7-8-18.1-4.6-40 10.2-54.9 9.6-9.6 22.2-14.4 34.9-14.4 6.8 0 13.7 1.4 20 4.2 10.7-17.4 18.8-36.7 23.7-57.1-18.4-7.2-31.6-25.1-31.6-46.2zm-159.4 79.9c-44.3 0-80-35.9-80-80s35.7-80 80-80 80 35.9 80 80-35.7 80-80 80z"/>
+	</svg>
+	
+	
+	
+	</div>
+
+	<div class="right searchBtnHolder">
+	
+	<i class="fa fa-search" aria-hidden="true"></i>
+	
+
+	</div>
+	
+</ons-toolbar>
+
+
+	<div class="main" style="position:absolute;width:100%;height:100%;top:0;left:0;background:none;z-index:999;overflow:hidden;">
+	
+	
+	
+			<div id="scene" class="scene">
+			<div class="para" style="margin-top:5%;" ><img style="width:100px;" src="images/freemind.png"></div>
+			<div class="para" style="margin-top:5%;"><img width="150" src="images/freeMind-txt.png"></div>
+			<div class="para" style="margin-top:5%;">THE ART & SCIENCE OF BEING</div>
+			
+			<div class="random_txt" id="myrandom_txt"></div>
+		</div>
+	
+	
+	
+	
+    
+	<div class="login-holder">
+	
+	
+	<!--<audio id="myAudio" src="bg_sound/bensound-relaxing.mp3"></audio>-->
+	
+	<audio id="myAudio" src=""></audio>
+	
+	<div class="Btns">
+	<div class="createAcc blueBtn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Create an account</div>
+	</div>
+	<div class="Btns">
+	<div class="loginLink blueBtn">Login</div>
+
+	</div>
+	
+	<div class="Btns">
+		<div class="intro whiteBtn">Intro</div>
+	</div> 
+
+    <div class="Btns">
+	<!--<div class="todays_med whiteBtn">Today's Meditation</div>-->
+	</div>	
+	
+
+
+	</div>
+	
+	
+		<div class="Btns qust">
+		<div class="whiteBtn qustBtn mainBtns"  data-page="static-subs-start.html" id="1">Quick Start</div>
+	</div> 
+
+	</div>
+		
+    </ons-page>
+</ons-template>
+
+
+
+<ons-template id="map.html" >
+    <ons-page align="center" id="map.html" modifier="full_bg_settings">
+	
+	<ons-toolbar modifier="transparent">
+	
+	<div class="left myleftmap settingsBack">
+	<img src="images/Backwardarrow-BLUE.png" class="movableBack">
+	</div>
+	
+	
+	<div class="center myCenter">FreeMind Map</div>
+
+	
+</ons-toolbar>
+
+<div class="main mapMain" style="position:absolute;width:100%;height:100%;top:0;left:0;background:none;z-index:999;overflow:hidden;">
+
+<div class="map" id="mapImg">
+
+<img src="https://freemindapp.com/map/map.png" >
+
+</div>
+
+	
+	
+</div>
+		
+    </ons-page>
+</ons-template>
+
+
+
+
+  <ons-template id="static-subs-start.html" >
+    <ons-page align="center" id="static-subs-start.html" modifier="full_bg_start">
+	
+
+	
+     <ons-toolbar modifier="transparent">
+     <div class="left back"><img src="images/backBtn.png" class="burgerArrow"></div>
+
+	<div class="right searchBtnHolder">
+	
+	<i class="fa fa-search" aria-hidden="true"></i>
+	
+
+	</div>
+	 </ons-toolbar>
+	
+	
+	<div class="main contentHolder">
+ 
+	
+	<div class="itemsHold">
+	
+	
+	<div class="items_static_subs" data-page="daily meditations" data-mainCat="start" >
+	
+	<img src="images/items-bg.png" class="itemsBg">
+	<img src="images/icons/dailyMeditations.png" class="itemsicons">
+	</div>
+	
+	
+    <div class="items_static_subs" data-page="collections" data-mainCat="start">
+	
+	<img src="images/items-bg.png" class="itemsBg">
+	<img src="images/icons/collections.png" class="itemsicons">
+	</div>
+	
+	<div class="items_static_subs" data-page="mindfulness" data-mainCat="start">
+	
+	<img src="images/items-bg.png" class="itemsBg">
+	<img src="images/icons/mindfulness.png" class="itemsicons">
+	</div>
+	
+	
+	<div class="items_static_subs" data-page="timed meditation" data-mainCat="start">
+	
+	<img src="images/items-bg.png" class="itemsBg">
+	<img src="images/icons/timedmeditations.png" class="itemsicons">
+	</div>
+	
+	<div class="items_static_subs" data-page="daily pick" data-mainCat="start">
+	
+	<img src="images/items-bg.png" class="itemsBg">
+	<img src="images/icons/DailyPick.png" class="itemsicons">
+	</div>
+	
+	<div class="items_static_subs" data-page="favourites" data-mainCat="start">
+	
+	<img src="images/items-bg.png" class="itemsBg">
+	<img src="images/icons/favourites.png" class="itemsicons">
+	</div>
+	
+	
+	<div class="endDiv"></div>
+	
+	
+	</div>
+	
+
+	</div>
+		
+    </ons-page>
+</ons-template>
+
+
+
+
+
+
+
+  <ons-template id="static-subs-peace.html" >
+    <ons-page align="center" id="static-subs-peace.html" modifier="full_bg_peace">
+	
+
+	
+     <ons-toolbar modifier="transparent">
+     <div class="left back"><img src="images/backBtn.png" class="burgerArrow"></div>
+
+	<div class="right searchBtnHolder">
+	
+	<i class="fa fa-search" aria-hidden="true"></i>
+	
+
+	</div>
+	 </ons-toolbar>
+	
+	
+	<div class="main contentHolder">
+ 
+	
+	<div class="itemsHold">
+	
+	
+	<div class="items_static_subs" data-page="daily meditations" data-mainCat="peace" >
+	
+	<img src="images/items-bg.png" class="itemsBg">
+	<img src="images/icons/dailyMeditations.png" class="itemsicons animated infinite pulse delay-4s">
+	</div>
+	
+	
+    <div class="items_static_subs" data-page="collections" data-mainCat="peace">
+	
+	<img src="images/items-bg.png" class="itemsBg">
+	<img src="images/icons/collections.png" class="itemsicons">
+	</div>
+	
+	<div class="items_static_subs" data-page="mindfulness" data-mainCat="peace">
+	
+	<img src="images/items-bg.png" class="itemsBg">
+	<img src="images/icons/mindfulness.png" class="itemsicons">
+	</div>
+	
+	
+	<div class="items_static_subs" data-page="timed meditation" data-mainCat="peace">
+	
+	<img src="images/items-bg.png" class="itemsBg">
+	<img src="images/icons/timedmeditations.png" class="itemsicons">
+	</div>
+	
+	<div class="items_static_subs" data-page="daily pick" data-mainCat="peace">
+	
+	<img src="images/items-bg.png" class="itemsBg">
+	<img src="images/icons/DailyPick.png" class="itemsicons">
+	</div>
+	
+	<div class="items_static_subs" data-page="favourites" data-mainCat="peace">
+	
+	<img src="images/items-bg.png" class="itemsBg">
+	<img src="images/icons/favourites.png" class="itemsicons">
+	</div>
+	
+	
+	<div class="endDiv"></div>
+	
+	
+	</div>
+	
+
+	</div>
+		
+    </ons-page>
+</ons-template>
+
+
+  <ons-template id="static-subs-power.html" >
+    <ons-page align="center" id="static-subs-power.html" modifier="full_bg_power">
+	
+
+	
+     <ons-toolbar modifier="transparent">
+     <div class="left back"><img src="images/backBtn.png" class="burgerArrow"></div>
+
+	<div class="right searchBtnHolder">
+	
+	<i class="fa fa-search" aria-hidden="true"></i>
+	
+
+	</div>
+	 </ons-toolbar>
+	
+	
+	<div class="main contentHolder">
+ 
+	<div class="itemsHold">
+
+	
+	<div class="items_static_subs" data-page="daily meditations" data-mainCat="power" >
+	
+	<img src="images/items-bg.png" class="itemsBg">
+	<img src="images/icons/dailyMeditations.png" class="itemsicons">
+	</div>
+	
+	
+    <div class="items_static_subs" data-page="collections" data-mainCat="power">
+	
+	<img src="images/items-bg.png" class="itemsBg">
+	<img src="images/icons/collections.png" class="itemsicons">
+	</div>
+	
+	<div class="items_static_subs" data-page="mindfulness" data-mainCat="power">
+	
+	<img src="images/items-bg.png" class="itemsBg">
+	<img src="images/icons/mindfulness.png" class="itemsicons">
+	</div>
+	
+	
+	<div class="items_static_subs" data-page="timed meditation" data-mainCat="power">
+	
+	<img src="images/items-bg.png" class="itemsBg">
+	<img src="images/icons/timedmeditations.png" class="itemsicons">
+	</div>
+	
+	<div class="items_static_subs" data-page="daily pick" data-mainCat="power">
+	
+	<img src="images/items-bg.png" class="itemsBg">
+	<img src="images/icons/DailyPick.png" class="itemsicons">
+	</div>
+	
+	<div class="items_static_subs" data-page="favourites" data-mainCat="power">
+	
+	<img src="images/items-bg.png" class="itemsBg">
+	<img src="images/icons/favourites.png" class="itemsicons">
+	</div>
+	
+	
+	<div class="endDiv"></div>
+	
+	
+	</div>
+	
+
+	</div>
+		
+    </ons-page>
+</ons-template>
+
+
+
+
+  <ons-template id="static-subs-purpose.html" >
+    <ons-page align="center" id="static-subs-purpose.html" modifier="full_bg_purpose">
+	
+
+	
+     <ons-toolbar modifier="transparent">
+     <div class="left back">
+	 <img src="images/backBtn.png" class="burgerArrow">
+	 </div>
+
+	<div class="right searchBtnHolder">
+	
+	<i class="fa fa-search" aria-hidden="true"></i>
+	
+
+	</div>
+	 </ons-toolbar>
+	
+	
+	<div class="main contentHolder">
+	
+	<div class="itemsHold">
+	
+	
+	
+	
+    <div class="items_static_subs" data-page="daily meditations" data-mainCat="purpose" >
+	
+	<img src="images/items-bg.png" class="itemsBg">
+	<img src="images/icons/dailyMeditations.png" class="itemsicons">
+	</div>
+	
+	
+    <div class="items_static_subs" data-page="collections" data-mainCat="purpose">
+	
+	<img src="images/items-bg.png" class="itemsBg">
+	<img src="images/icons/collections.png" class="itemsicons">
+	</div>
+	
+	<div class="items_static_subs" data-page="mindfulness" data-mainCat="purpose">
+	
+	<img src="images/items-bg.png" class="itemsBg">
+	<img src="images/icons/mindfulness.png" class="itemsicons">
+	</div>
+	
+	
+	<div class="items_static_subs" data-page="timed meditation" data-mainCat="purpose">
+	
+	<img src="images/items-bg.png" class="itemsBg">
+	<img src="images/icons/timedmeditations.png" class="itemsicons">
+	</div>
+	
+	<div class="items_static_subs" data-page="daily pick" data-mainCat="purpose">
+	
+	<img src="images/items-bg.png" class="itemsBg">
+	<img src="images/icons/DailyPick.png" class="itemsicons">
+	</div>
+	
+	<div class="items_static_subs" data-page="favourites" data-mainCat="purpose">
+	
+	<img src="images/items-bg.png" class="itemsBg">
+	<img src="images/icons/favourites.png" class="itemsicons">
+	</div>
+	
+	<div class="endDiv"></div>
+	
+	
+	</div>
+	
+
+	</div>
+		
+    </ons-page>
+</ons-template>
+
+
+  <ons-template id="dynamic-subs.html"  >
+    <ons-page align="center" class="dynamic_subs" id="dynamic-subs.html" modifier="full_bg_purpose">
+	
+
+	
+     <ons-toolbar modifier="transparent">
+     <div class="left back"><img src="images/backBtn.png" class="burgerArrow"></div>
+	
+
+	<div class="right searchBtnHolder">
+	
+	<i class="fa fa-search" aria-hidden="true"></i>
+	
+
+	</div>
+	 </ons-toolbar>
+	
+
+	
+	
+	
+	<div class="main contentHolder" >
+ 
+ <img id="loading" class="loading" src='images/loader.png' border='0'/>
+ 
+ 	<div class="scrolling-wrapper dyna_subs_card">
+	<div class="goBackToStart" data-page="" data-mainCat="">Quick Start</div>
+    <div class="card" data-page="daily meditations" data-mainCat="">Daily Meditations</div>
+   <div class="card" data-page="collections" data-mainCat="">Collections</div>
+    <div class="card" data-page="mindfulness" data-mainCat="">Mindfulness</div>
+   <div class="card" data-page="timed meditation" data-mainCat="">Timed Meditations</div>
+   <div class="card" data-page="daily pick" data-mainCat="">Daily Pick</div>
+   <div class="card" data-page="favourites" data-mainCat="">Favourites</div>
+  </div>
+  
+ <div class="dynCenter"></div>
+ <div class="random_txt_2"></div>
+  
+  
+	<div class="itemsHold">
+	
+    <p class="daily_pick_txt">
+	What do you hope for today?<br>
+    What would best serve your goals?<br>
+    What would best solve your challenges?<br>
+    What could best serve you today?<br><br>
+    Consider all this for a moment.<br><br>
+    Then press the button to receive your randomised daily pick.<br><br>
+	</p>
+	
+	<!--<img src="images/play-daily-pick.png" class="dailyPickBtb todays_med">-->
+	
+	<div class="dailyPickBtbHolder">
+	<div class="dailyPickBtb todays_med">Play Daily Pick</div>
+	</div>
+	
+	<div class="cat_details"></div>
+	 
+	
+	
+	<div class="endDiv"></div>
+	
+	
+	</div>
+	
+
+	</div>
+		
+    </ons-page>
+</ons-template>
+
+
+
+
+  <ons-template id="dynamic-subs-free.html"  >
+    <ons-page align="center" class="dynamic_free" id="dynamic-subs-free.html" modifier="full_bg_free">
+	
+
+	
+     <ons-toolbar modifier="transparent">
+     <div class="left back"><img src="images/backBtn.png" class="burgerArrow"></div>
+	
+	 
+
+	<div class="right searchBtnHolder">
+	
+	<i class="fa fa-search" aria-hidden="true"></i>
+	
+
+	</div>
+	 </ons-toolbar>
+	
+
+	
+	
+	
+	<div class="main contentHolder" >
+ 
+ <img id="loading" class="loading" src='images/loader.png' border='0'/>
+ 
+
+  
+ <div class="dynCenter"></div>
+ <div class="random_txt_2"></div>
+  
+  
+	<div class="itemsHold">
+	
+    <p class="daily_pick_txt">
+	What do you hope for today?<br>
+    What would best serve your goals?<br>
+    What would best solve your challenges?<br>
+    What could best serve you today?<br><br>
+    Consider all this for a moment.<br><br>
+    Then press the button to receive your randomised daily pick.<br><br>
+	</p>
+	
+	<!--<img src="images/play-daily-pick.png" class="dailyPickBtb todays_med">-->
+	
+	<div class="dailyPickBtbHolder">
+	<div class="dailyPickBtb todays_med">Play Daily Pick</div>
+	</div>
+	
+	<div class="cat_details"></div>
+	 
+	 
+
+	
+	
+	
+	
+
+	
+	
+	<div class="endDiv"></div>
+	
+	
+	</div>
+	
+
+	</div>
+		
+    </ons-page>
+</ons-template>
+
+
+
+
+<ons-template id="settings.html" >
+    <ons-page align="center" id="settings.html" modifier="full_bg_settings">
+	     <ons-toolbar modifier="transparent">
+     <div class="left myleft settingsBack"><img src="images/Backwardarrow-BLUE.png" width=""></div>
+	      <div class="center myCenter">SETTINGS</div>
+	 </ons-toolbar>
+
+  <div class="main contentHolder">
+  
+  
+	
+		<div class="Absolute-Center">
+	<div class="mylist">
+    <div class="list-container">
+	
+	
+	
+	
+	
+			   <div id="list-item2" class="howToUse"> 
+		<ons-ripple></ons-ripple>
+            <div class="list-item-cell"><i class="fa fa-question" aria-hidden="true"></i></div> 
+            <div class="list-item-cell"><span>How to use FreeMind</span></div>
+        </div>
+	
+		   <div id="list-item2" class="playVid"> 
+		<ons-ripple></ons-ripple>
+            <div class="list-item-cell"><i class="fa fa-film" aria-hidden="true"></i></div> 
+            <div class="list-item-cell"><span>FreeMind Film</span></div>
+        </div>
+	
+	
+	
+        <div id="list-item2" class="unlockPrem"> 
+		<ons-ripple></ons-ripple>
+            <div class="list-item-cell"><ons-icon icon="md-lock-open"></ons-icon></div> 
+            <div class="list-item-cell"><span>Unlock Premium</span></div>
+        </div>
+		
+		<div id="list-item2" class="restorePurchase"> 
+		<ons-ripple></ons-ripple>
+            <div class="list-item-cell"><i class="fa fa-retweet" aria-hidden="true"></i></div> 
+            <div class="list-item-cell"><span style="margin-left:-5px;">Restore Purchase</span></div>
+        </div>
+		
+	 <div id="list-item2" class="cencelSubBtn"> 
+		<ons-ripple></ons-ripple>
+            <div class="list-item-cell"><i class="fa fa-times-circle-o" aria-hidden="true"></i></div> 
+            <div class="list-item-cell"><span>Cancel Subscription</span></div>
+        </div>
+		
+		<div id="list-item2" class="freeStuff" data-maincat="peace" data-details="A wonderful collection of meditations and training to welcome you to FreeMind" data-staticcat="daily meditations" data-dynamiccat="Start Here"> 
+		<ons-ripple></ons-ripple>
+            <div class="list-item-cell"><i class="fa fa-gift" aria-hidden="true"></i></div> 
+            <div class="list-item-cell"><span style="margin-left:-5px;">Free Meditations</span></div>
+        </div>
+		
+	     <div id="list-item2" onclick="gotoAchievementsPage();"> 
+		 <ons-ripple></ons-ripple>
+            <div class="list-item-cell"><i class="fa fa-star-o" aria-hidden="true"></i></div> 
+            <div class="list-item-cell"><span>Achievements</span></div>
+        </div>
+		
+		<div id="list-item2" onclick="gotoTrackerPage();"> 
+		 <ons-ripple></ons-ripple>
+            <div class="list-item-cell"><i class="fa fa-calendar" aria-hidden="true"></i></div> 
+            <div class="list-item-cell"><span>Meditation Tracker</span></div>
+        </div>
+		
+        <div id="list-item2" onclick="document.querySelector('#myNavigator').pushPage('storage.html',{animation:'slide'});"> 
+		<ons-ripple></ons-ripple>
+            <div class="list-item-cell"><i class="fa fa-server" aria-hidden="true"></i></div> 
+            <div class="list-item-cell"><span>Downloads</span></div>
+        </div>
+		
+	  <div id="list-item2" class="invBtn"> 
+		<ons-ripple></ons-ripple>
+            <div class="list-item-cell"><i class="fa fa-users" aria-hidden="true"></i></div> 
+            <div class="list-item-cell"><span>Invite Friends</span></div>
+        </div>
+
+        <div id="list-item2" class="contactBtn"> 
+		<ons-ripple></ons-ripple>
+            <div class="list-item-cell"><i class="fa fa-comment-o" aria-hidden="true"></i></div> 
+            <div class="list-item-cell"><span>Support</span></div>
+        </div>
+		
+		<div id="list-item2" class="intro"> 
+		<ons-ripple></ons-ripple>
+            <div class="list-item-cell"><i class="fa fa-info" aria-hidden="true"></i></div> 
+            <div class="list-item-cell" style="padding-left:11px;"><span>Intro</span></div>
+        </div>
+		
+	   <div id="list-item2" class="mapBtn"> 
+		<ons-ripple></ons-ripple>
+            <div class="list-item-cell"><i class="fa fa-sitemap" aria-hidden="true"></i></div> 
+            <div class="list-item-cell"><span>FreeMind Map</span></div>
+        </div>		
+		
+		
+		<div id="list-item2" class="tcBtn"> 
+		<ons-ripple></ons-ripple>
+            <div class="list-item-cell"><i class="fa fa fa-flag-o" aria-hidden="true"></i></div> 
+            <div class="list-item-cell"><span>T&C - Privacy</span></div>
+        </div>
+		
+		<div id="list-item2" class="logoutBtn"> 
+		<ons-ripple></ons-ripple>
+            <div class="list-item-cell"><i class="fa fa-sign-out" aria-hidden="true"></i></div> 
+            <div class="list-item-cell"><span>Logout</span></div>
+        </div>
+</div>
+</div>
+</div>
+  </div>
+    </ons-page>
+</ons-template>
+
+
+<ons-template id="storage.html" >
+    <ons-page align="center" id="storage.html" modifier="full_bg_settings">
+	     <ons-toolbar modifier="transparent">
+     <div class="left myleft"><img src="images/Backwardarrow-BLUE.png" width=""></div>
+	      <div class="center myCenter">DOWNLOADS</div>
+	 </ons-toolbar>
+
+  <div class="main contentHolder">
+    <p class="achp">The FreeMind App will always play the highest quality sound possible. At times of poor internet connection it will play a lower quality sound. To ensure you can access content when you are offline download the recordings by clicking this symbol when you see it. <i class="fa fa-cloud-download" aria-hidden="true"></i>. All downloads will be the highest quality versions.</p>
+  
+  
+    <ons-list class="storageList" style="background:none;">
+	
+	
+	
+	</ons-list>
+  
+  </div>
+  
+
+		
+    </ons-page>
+</ons-template>
+
+
+<ons-template id="date-notes.html" >
+    <ons-page align="center" id="date-notes.html" modifier="full_bg_settings">
+	     <ons-toolbar modifier="transparent">
+     <div class="left myleft"><img src="images/Backwardarrow-BLUE.png" width=""></div>
+	      <div class="center myCenter">NOTES</div>
+	 </ons-toolbar>
+
+  <div class="main contentHolder" style="overflow:scroll;">
+  <img id="loading" class="loading" src='images/loader-dark.png' border='0'/>
+  
+    <ons-list class="datesList" style="background:none;">
+	
+	
+	<div class="endDiv"></div>
+	</ons-list>
+  
+  </div>
+  
+
+		
+    </ons-page>
+</ons-template>
+
+
+<ons-template id="achievemets.html" >
+    <ons-page align="center" id="achievemets.html" modifier="full_bg_settings">
+	     <ons-toolbar modifier="transparent">
+     <div class="left myleft"><img src="images/Backwardarrow-BLUE.png" width=""></div>
+	      <div class="center myCenter">ACHIEVEMENTS</div>
+	 </ons-toolbar>
+
+  <div class="main contentHolder" style="overflow:scroll;">
+  <img id="loading" class="loading" src='images/loader-dark.png' border='0'/>
+  
+  <p class="achp">Your achievement rewards are earned by completing FreeMind Meditations. 100 completed meditations means you are officially a FreeMind. This will massively improve your life. Completing 250 FreeMind meditations will make you a FreeMind Master. The skills you will have learned will enable you to have a truly amazing life.</p>
+  
+ <img src="https://freemindapp.com/badges/1-grey.png" class="ach_badge first"><img src="https://freemindapp.com/badges/10-grey.png" class="ach_badge tenth"><img src="https://freemindapp.com/badges/50-grey.png" class="ach_badge fifty"><img src="https://freemindapp.com/badges/100-grey.png" class="ach_badge hundred"><img src="https://freemindapp.com/badges/250-grey.png" class="ach_badge two-fifty">
+  
+  <div class="endDiv"></div>
+  </div>
+  
+
+		
+    </ons-page>
+</ons-template>
+
+
+
+
+<ons-template id="progress-calendar.html" >
+    <ons-page align="center" id="progress-calendar.html" modifier="calendar">
+     <ons-toolbar modifier="transparent">
+     <div class="center myCenter">MEDITATION TRACKER</div>
+	 <div class="left myleft"><img src="images/Backwardarrow-BLUE.png" width=""></div>
+	 </ons-toolbar>
+	
+	<div class="main">
+	
+	
+	<img id="loadingCal" class="CalLoader" src='images/loader-dark.png' border='0'/>
+	
+<div class="movable">
+<div class="streaks">
+<h3>Streak</h3>
+
+<div class="longestSreak">
+<i class="fa fa-clock-o" style="font-size:30px;" aria-hidden="true"></i>
+<p>Longest</p><br>
+<p class="longestSt">0</p>
+</div>
+
+<div class="longestSreak">
+</div>
+
+
+<div class="currentSreak shareSteakBtn">
+<i class="fa fa-share-alt" style="font-size:30px;" aria-hidden="true"></i>
+<p>Share your streak</p><br>
+</div>
+
+
+</div>	
+	
+	
+	
+<div class="container" id="container">
+  <div class="curr-month"><b>-- --- --</b></div>
+  <div class="all-days">
+    <ul class="calendarul"></ul>
+  </div>
+  <div class="all-date">
+    <ul></ul>
+	
+	
+	
+  </div>
+  
+</div>
+
+
+
+	</div>
+	</div>
+	
+
+
+    </ons-page>
+</ons-template>
+<script src="js/custom.js"></script>
+</body>
+</html>
