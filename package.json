@@ -1,0 +1,77 @@
+{
+  "name": "com.freemind.app",
+  "displayName": "FreeMind",
+  "version": "1.0.0",
+  "description": "A sample Apache Cordova application that responds to the deviceready event.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ecosystem:cordova"
+  ],
+  "author": "Apache Cordova Team",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "cordova-ios": "^5.1.1",
+    "cordova-plugin-background-mode-appstronauts": "^1.0.0",
+    "cordova-plugin-badge": "^0.8.8",
+    "cordova-plugin-compat": "^1.2.0",
+    "cordova-plugin-contacts": "^3.0.1",
+    "cordova-plugin-device": "^2.0.3",
+    "cordova-plugin-dialogs": "^2.0.2",
+    "cordova-plugin-file": "^4.3.3",
+    "cordova-plugin-file-transfer": "^1.6.3",
+    "cordova-plugin-ignore-mute-switch": "^1.0.0",
+    "cordova-plugin-inappbrowser": "^4.0.0",
+    "cordova-plugin-inapppurchase-fixed": "^1.1.2",
+    "cordova-plugin-ionic-keyboard": "^2.2.0",
+    "cordova-plugin-ionic-webview": "^5.0.0",
+    "cordova-plugin-local-notification": "git+https://github.com/katzer/cordova-plugin-local-notifications.git",
+    "cordova-plugin-media": "^3.0.1",
+    "cordova-plugin-network-information": "^2.0.2",
+    "cordova-plugin-spinner": "^1.1.0",
+    "cordova-plugin-splashscreen": "^5.0.4",
+    "cordova-plugin-statusbar": "^2.4.3",
+    "cordova-plugin-streaming-media": "git+https://github.com/nchutchind/cordova-plugin-streaming-media.git",
+    "cordova-plugin-vibration": "^3.1.1",
+    "cordova-plugin-x-socialsharing": "^5.6.8",
+    "es6-promise-plugin": "^4.2.2"
+  },
+  "devDependencies": {
+    "cordova-plugin-whitelist": "^1.3.4"
+  },
+  "cordova": {
+    "plugins": {
+      "cordova-plugin-whitelist": {},
+      "cordova-plugin-ionic-webview": {},
+      "cordova-plugin-ionic-keyboard": {},
+      "cordova-plugin-splashscreen": {},
+      "cordova-plugin-dialogs": {},
+      "cordova-plugin-vibration": {},
+      "cordova-plugin-media": {
+        "MICROPHONE_USAGE_DESCRIPTION": " "
+      },
+      "cordova-plugin-file-transfer": {},
+      "cordova-plugin-x-socialsharing": {
+        "PHOTO_LIBRARY_ADD_USAGE_DESCRIPTION": "This app requires photo library access to function properly.",
+        "PHOTO_LIBRARY_USAGE_DESCRIPTION": "This app requires photo library access to function properly."
+      },
+      "cordova-plugin-network-information": {},
+      "cordova-plugin-spinner": {},
+      "cordova-plugin-device": {},
+      "cordova-plugin-streaming-media": {},
+      "cordova-plugin-inappbrowser": {},
+      "nl.x-services.plugins.backgroundaudio": {},
+      "cordova-plugin-local-notification": {},
+      "cordova-plugin-statusbar": {},
+      "cordova-plugin-inapppurchase-fixed": {},
+      "cordova-plugin-contacts": {
+        "CONTACTS_USAGE_DESCRIPTION": "FreeMind needs contacts access to search friends and send SMS invitation."
+      }
+    },
+    "platforms": [
+      "ios"
+    ]
+  }
+}
